@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Merge multiple PDF files into one with our free online PDF Merge Tool. Fast, secure, and easy to use!">
+    <meta name="keywords" content="PDF merge, merge PDF, combine PDF, online PDF tools">
+    <meta name="author" content="Your Name">
+    <title>PDF Merge Tool - Free Online PDF Combiner</title>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID" crossorigin="anonymous"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Upload Section */
+        #upload-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .file-input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-input-label {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .file-input-label:hover {
+            background-color: #45a049;
+        }
+
+        #file-names {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        #merge-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #merge-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Result Section */
+        #result-section {
+            text-align: center;
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+        }
+
+        #download-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #download-link:hover {
+            background-color: #45a049;
+        }
+
+        /* Ad Section */
+        #ad-section {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            main {
+                padding: 15px;
+            }
+
+            .file-input-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .file-input-label, #merge-btn, #download-link {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>PDF Merge Tool</h1>
+        <p>Combine multiple PDF files into one quickly and easily!</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Upload Section -->
+        <section id="upload-section">
+            <div class="file-input-container">
+                <label for="pdf-input" class="file-input-label">Choose PDF Files</label>
+                <span id="file-names">No files chosen</span>
+            </div>
+            <input type="file" id="pdf-input" accept="application/pdf" multiple style="display: none;">
+            <button id="merge-btn">Merge PDFs</button>
+        </section>
+
+        <!-- Result Section -->
+        <section id="result-section">
+            <h2>Your Merged PDF is Ready!</h2>
+            <a id="download-link" href="#" download="merged-document.pdf">Download Merged PDF</a>
+        </section>
+
+        <!-- AdSense Ad Unit -->
+        <section id="ad-section">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID" crossorigin="anonymous"></script>
+            <!-- Your Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 PDF Merge Tool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript Functionality
+        const pdfInput = document.getElementById('pdf-input');
+        const fileNamesDisplay = document.getElementById('file-names');
+        const mergeBtn = document.getElementById('merge-btn');
+        const resultSection = document.getElementById('result-section');
+        const downloadLink = document.getElementById('download-link');
+
+        // Display the chosen file names
+        pdfInput.addEventListener('change', function() {
+            if (pdfInput.files.length > 0) {
+                const fileNames = Array.from(pdfInput.files).map(file => file.name).join(', ');
+                fileNamesDisplay.textContent = fileNames;
+            } else {
+                fileNamesDisplay.textContent = 'No files chosen';
+            }
+        });
+
+        // Merge PDFs
+        mergeBtn.addEventListener('click', function() {
+            if (pdfInput.files.length === 0) {
+                alert('Please select at least one PDF file to merge.');
+                return;
+            }
+
+            const files = Array.from(pdfInput.files);
+
+            // Simulate merging (for demonstration purposes)
+            // In a real-world scenario, you would use a backend API for merging.
+            const mergedBlob = new Blob(files, { type: 'application/pdf' });
+            const mergedUrl = URL.createObjectURL(mergedBlob);
+
+            // Show result section and set download link
+            resultSection.style.display = 'block';
+            downloadLink.href = mergedUrl;
+        });
+    </script>
+</body>
+</html>
