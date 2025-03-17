@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Split your PDF files online with our fully responsive PDF splitter tool. Easily extract pages from your PDF documents.">
+    <meta name="keywords" content="PDF splitter, split PDF, extract PDF pages, PDF tool">
+    <meta name="author" content="Muhammad Zaid">
+    <title>PDF Split Tool - Split Your PDF Files Online</title>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID" crossorigin="anonymous"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Upload Section */
+        #upload-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .file-input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-input-label {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .file-input-label:hover {
+            background-color: #45a049;
+        }
+
+        #file-name {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        #split-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #split-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Result Section */
+        #result-section {
+            text-align: center;
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+        }
+
+        #download-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .download-link {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-link:hover {
+            background-color: #45a049;
+        }
+
+        /* Ad Section */
+        #ad-section {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            main {
+                padding: 15px;
+            }
+
+            .file-input-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .file-input-label, #split-btn, .download-link {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PDF Split Tool</h1>
+        <p>Easily split your PDF files into individual pages.</p>
+    </header>
+
+    <main>
+        <!-- Upload Section -->
+        <section id="upload-section">
+            <div class="file-input-container">
+                <label for="pdf-input" class="file-input-label">Choose PDF File</label>
+                <span id="file-name">No file chosen</span>
+            </div>
+            <input type="file" id="pdf-input" accept="application/pdf" style="display: none;">
+            <button id="split-btn">Split PDF</button>
+        </section>
+
+        <!-- Result Section -->
+        <section id="result-section">
+            <h2>Split PDF Pages</h2>
+            <div id="download-links"></div>
+        </section>
+
+        <!-- AdSense Ad Unit -->
+        <section id="ad-section">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID" crossorigin="anonymous"></script>
+            <!-- Your Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 PDF Split Tool. All rights reserved.</p>
+    </footer>
+
+    <!-- PDF-Lib for PDF Manipulation -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script>
+        // JavaScript Functionality
+        const pdfInput = document.getElementById('pdf-input');
+        const fileNameDisplay = document.getElementById('file-name');
+        const splitBtn = document.getElementById('split-btn');
+        const resultSection = document.getElementById('result-section');
+        const downloadLinksContainer = document.getElementById('download-links');
+
+        // Display the chosen file name
+        pdfInput.addEventListener('change', function() {
+            if (pdfInput.files.length > 0) {
+                fileNameDisplay.textContent = pdfInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = 'No file chosen';
+            }
+        });
+
+        // Split PDF
+        splitBtn.addEventListener('click', async function() {
+            if (pdfInput.files.length === 0) {
+                alert('Please select a PDF file to split.');
+                return;
+            }
+
+            const file = pdfInput.files[0];
+            const arrayBuffer = await file.arrayBuffer();
+            const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+            const totalPages = pdfDoc.getPageCount();
+
+            // Clear previous download links
+            downloadLinksContainer.innerHTML = '';
+
+            // Split each page into a separate PDF
+            for (let i = 0; i < totalPages; i++) {
+                const newPdfDoc = await PDFLib.PDFDocument.create();
+                const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [i]);
+                newPdfDoc.addPage(copiedPage);
+
+                const pdfBytes = await newPdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+
+                // Create download link
+                const downloadLink = document.createElement('a');
+                downloadLink.href = url;
+                downloadLink.download = `page-${i + 1}.pdf`;
+                downloadLink.textContent = `Download Page ${i + 1}`;
+                downloadLink.className = 'download-link';
+                downloadLinksContainer.appendChild(downloadLink);
+            }
+
+            // Show result section
+            resultSection.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
